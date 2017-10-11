@@ -65,11 +65,24 @@ let yterminer = taskManager.places.filter{$0.name == "terminer"}[0]
 //On a ajouter une place "terminer", voir les liens dans TaskManagerLib
 //pour que le reseau soit tirable : on met terminer à 1
 var m2: PTMarking = [taskPool: 0, processPool: 0, inProgress: 0, terminer: 1]
-//puis je tire les transitions une à une dans une boucle
-for t in [ycreate, yspawn, yexec, ysuccess] {
+//puis je tire les transitions une à une dans une boucle, ici j'essaie de finir sur un Fail, tout fonctionne parfaitement
+for t in [ycreate, yspawn, yexec, yfail] {
     m2 = t.fire(from: m2)!
 
 //pour voir le résultat de chaque tire, on imprime le résultats à chaque fin de boucle
     print("Etape", t, m2)
 }
-//TEST A FAIRE POUR VOIR echec
+
+print("----------------------------------")
+print("TEST mise en echec")
+
+var m3: PTMarking = [taskPool: 0, processPool: 0, inProgress: 0, terminer: 1]
+//puis je tire les transitions une à une dans une boucle
+for t in [ycreate, yspawn, yspawn, yexec, yexec, ysuccess] {
+    m3 = t.fire(from: m3)!
+
+//pour voir le résultat de chaque tire, on imprime le résultats à chaque fin de boucle
+    print("Etape", t, m3)
+}
+//le resultat est un crash car le réseau n'est pas tirable avec ces tirs
+print("----------------------------------")
