@@ -18,8 +18,8 @@ let terminer = taskManager.places.filter{$0.name == "terminer"}[0]
     print("Exercie 3 : tire conduisant au problème")
 //j'ai repris la méthode vu en exercie que je trouvais plus pratique
 //je crée donc mon marquage de départ dans la variable m
-//ne pas ce soucier de la place continuer qui est faite pour empécher le problème
-var m: PTMarking = [taskPool: 0, processPool: 0, inProgress: 0, terminer: 5]
+//ne pas ce soucier de la place "terminer" qui est faite pour empécher le problème
+var m: PTMarking = [taskPool: 0, processPool: 0, inProgress: 0, terminer: 10]
 //puis je tire les transitions une à une dans une boucle
 for t in [create, spawn, spawn, exec, exec, success, create, spawn, spawn, exec, exec, success] {
     m = t.fire(from: m)!
@@ -51,6 +51,7 @@ let correctTaskManager = createCorrectTaskManager()
 print("---------------------------------------")
 print("Exercice 4 : correction du problème")
 
+//comme dans la première fonction
 let ycreate = taskManager.transitions.filter{$0.name == "create"}[0]
 let yspawn = taskManager.transitions.filter{$0.name == "spawn"}[0]
 let yexec = taskManager.transitions.filter{$0.name == "exec"}[0]
@@ -61,6 +62,8 @@ let yprocessPool = taskManager.places.filter{$0.name == "processPool"}[0]
 let yinProgress = taskManager.places.filter{$0.name == "inProgress"}[0]
 let yterminer = taskManager.places.filter{$0.name == "terminer"}[0]
 
+//On a ajouter une place "terminer", voir les liens dans TaskManagerLib
+//pour que le reseau soit tirable : on met terminer à 1
 var m2: PTMarking = [taskPool: 0, processPool: 0, inProgress: 0, terminer: 1]
 //puis je tire les transitions une à une dans une boucle
 for t in [ycreate, yspawn, yexec, ysuccess] {
@@ -69,3 +72,4 @@ for t in [ycreate, yspawn, yexec, ysuccess] {
 //pour voir le résultat de chaque tire, on imprime le résultats à chaque fin de boucle
     print("Etape", t, m2)
 }
+//TEST A FAIRE POUR VOIR echec
