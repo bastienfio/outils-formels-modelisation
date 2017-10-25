@@ -12,9 +12,36 @@ public class MarkingGraph {
 
 }
 
-// Ex. 1: Mutual exclusion
+
+func countNodes(markingGraph: MarkingGraph) -> Int {
+  //algo de recherche en profondeur
+  //seen (marquage deja vu)
+  //toVisit (marquage à visiter)
+  var seen = [markingGraph]
+  var toVisit = [markingGraph]
+
+  while let current = toVisit.popLast() { //on met le premier markingGraph sur une pile, qu'on depile
+    for (_, successor) in current.successors { //le _ sert à dire qu'on ne veut pas specifier de variable pour le nom de la transition
+      if !seen.contains(where: {$0 === successor}) {//si j'ai pas vu encore contains
+        seen.append(successor) //on l'ajoute
+        toVisit.append(successor) //on l'ajoute pour le visiter encore
+      }
+    }
+  }
+
+  return seen.count
+}
+
+
+// Ex. 1: Mutual exclusion - Graphe de marquage 1.3
 do {
-    // Write your code here ...
+    let m0 = MarkingGraph(marking: ["p0": 1, "p1": 0, "p2": 1, "p3": 0, "p4": 1])
+    let m1 = MarkingGraph(marking: ["p0": 0, "p1": 1, "p2": 0, "p3": 0, "p4": 1])
+    let m2 = MarkingGraph(marking: ["p0": 1, "p1": 0, "p2": 0, "p3": 1, "p4": 0])
+
+    m0.successors = ["t1": m1, "t3": m2]
+    m1.successors = ["t0": m0]
+    m2.successors = ["t2": m0]
 }
 
 // Ex. 2: PetriNet 1
