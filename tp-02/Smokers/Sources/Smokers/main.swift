@@ -19,6 +19,18 @@ else {
     fatalError("invalid model")
 }
 
+/*//Essai de tir du réseau
+//marquage de départ
+var z: PTMarking = [r: 1, p: 0, t: 0, m: 0, w1: 1, s1: 0, w2: 1, s2: 0, w3: 1, s3: 0]
+//puis je tire les transitions une à une dans une boucle
+for i in [tpt, ts1] {
+    z = i.fire(from: z)!
+
+//pour voir le résultat de chaque tire, on imprime le résultats à chaque fin de boucle
+    print("Etape", i, z)
+  }
+*/
+
 // Create the initial marking.
 let initialMarking: PTMarking = [r: 1, p: 0, t: 0, m: 0, w1: 1, s1: 0, w2: 1, s2: 0, w3: 1, s3: 0]
 
