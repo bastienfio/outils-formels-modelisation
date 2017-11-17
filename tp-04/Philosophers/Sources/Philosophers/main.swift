@@ -44,12 +44,9 @@ do {
 print()
 
 do {
-<<<<<<< HEAD
-    let philosophers = lockablePhilosophers(n: 3)
-=======
+
     let philosophers = lockFreePhilosophers(n: 3)
     // let philosophers = lockablePhilosophers(n: 3)
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8
     for m in philosophers.simulation(from: philosophers.initialMarking!).prefix(10) {
         print(m)
     }

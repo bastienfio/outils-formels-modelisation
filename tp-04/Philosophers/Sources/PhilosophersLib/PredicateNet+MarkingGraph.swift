@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-//extension PredicateNet {
-//
-//    public func markingGraph(from: MarkingType) -> PredicateMarkingNode<T, []>?
-//
-//}
-
-public class PredicateMarkingNode<T: Equatable> {
-
-    public init(
-        marking   : PredicateNet<T>.MarkingType,
-        successors: PredicateSuccessorMap<T>)
-=======
 extension PredicateNet {
 
     /// Returns the marking graph of a bounded predicate net.
@@ -64,42 +51,11 @@ public class PredicateMarkingNode<T: Equatable>: Sequence {
     public init(
         marking   : PredicateNet<T>.MarkingType,
         successors: [PredicateTransition<T>: PredicateBindingMap<T>] = [:])
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8
     {
         self.marking    = marking
         self.successors = successors
     }
 
-<<<<<<< HEAD
-    public let marking: PredicateNet<T>.MarkingType
-
-    /// The successors of this node.
-    public var successors: PredicateSuccessorMap<T>
-
-}
-
-//public protocol PredicateSuccessorMap: ExpressibleByDictionaryLiteral {
-//
-//    /// - Note: Until Conditional conformances (SE-0143) is implemented, we can't make `Binding`
-//    ///   conform to `Hashable`. Hence we're forced to use a tuple list rather than a proper
-//    ///   dictionary.
-//
-//}
-
-public struct PredicateSuccessorMap<T: Equatable> {
-
-    /// The type of the mapping `(Binding) ->  PredicateMarkingNode`.
-    ///
-    /// - Note: Until Conditional conformances (SE-0143) is implemented, we can't make `Binding`
-    ///   conform to `Hashable`. Hence we're forced to use a tuple list rather than a proper
-    ///   dictionary.
-    public typealias BindingMap =
-        [(binding: PredicateTransition<T>.Binding, successor: PredicateMarkingNode<T>)]
-
-    // MARK: Internals
-
-    private var storage: [PredicateTransition<T>: BindingMap]
-=======
     public func makeIterator() -> AnyIterator<PredicateMarkingNode> {
         var visited = [self]
         var toVisit = [self]
@@ -137,7 +93,7 @@ public struct PredicateSuccessorMap<T: Equatable> {
 
     /// The successors of this node.
     public var successors: [PredicateTransition<T>: PredicateBindingMap<T>]
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8
+
 
 }
 
@@ -146,12 +102,6 @@ public struct PredicateSuccessorMap<T: Equatable> {
 /// - Note: Until Conditional conformances (SE-0143) is implemented, we can't make `Binding`
 ///   conform to `Hashable`, and therefore can't use Swift's dictionaries to implement this
 ///   mapping. Hence we'll wrap this in a tuple list until then.
-<<<<<<< HEAD
-public struct PredicateBindingMap<T: Equatable> {
-
-    public typealias Key   = PredicateTransition<T>.Binding
-    public typealias Value = PredicateMarkingNode<T>
-=======
 public struct PredicateBindingMap<T: Equatable>: Collection {
 
     public typealias Key     = PredicateTransition<T>.Binding
@@ -173,7 +123,6 @@ public struct PredicateBindingMap<T: Equatable>: Collection {
     public subscript(index: Int) -> Element {
         return self.storage[index]
     }
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8
 
     public subscript(key: Key) -> Value? {
         get {
@@ -200,8 +149,6 @@ public struct PredicateBindingMap<T: Equatable>: Collection {
 
 }
 
-<<<<<<< HEAD
-=======
 extension PredicateBindingMap: ExpressibleByDictionaryLiteral {
 
     public init(dictionaryLiteral elements: ([Variable: T], PredicateMarkingNode<T>)...) {
@@ -209,4 +156,3 @@ extension PredicateBindingMap: ExpressibleByDictionaryLiteral {
     }
 
 }
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8

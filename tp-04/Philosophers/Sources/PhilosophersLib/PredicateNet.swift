@@ -332,11 +332,8 @@ public class PredicateArc<T: Equatable>: Hashable {
 
 }
 
-<<<<<<< HEAD
-public indirect enum PredicateLabel<T: Equatable> {
-=======
+
 public enum PredicateLabel<T: Equatable> {
->>>>>>> 2c3313f512f5b80773522eeb89bc8e8cbca58ef8
 
     case variable(Variable)
     case function((PredicateTransition<T>.Binding) -> T)
