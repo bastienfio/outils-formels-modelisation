@@ -43,7 +43,7 @@ public enum Formula {
         return .implication(lhs, rhs)
     }
 
-    /// The negation normal form of the formula.
+    /// The negation normal form of the formula. S'inspirer pour faire la DNF et CNF
     public var nnf: Formula {
         switch self {
         case .proposition(_):

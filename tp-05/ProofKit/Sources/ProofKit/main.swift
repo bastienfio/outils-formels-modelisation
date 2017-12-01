@@ -2,9 +2,12 @@ import ProofKitLib
 
 let a: Formula = "a"
 let b: Formula = "b"
-let f = a && b
-
+let f = !(a && b)
+//version NNF de ça
 print(f)
+print(f.nnf)
+
+
 
 let booleanEvaluation = f.eval { (proposition) -> Bool in
     switch proposition {
