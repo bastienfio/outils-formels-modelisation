@@ -2,18 +2,38 @@ import ProofKitLib
 
 let a: Formula = "a"
 let b: Formula = "b"
+let f = !(a && b)
+print(f)
+//version NNF de f
+print("la forme nnf de \(f) est \(f.nnf)")
+
+
+//proofkit revoit des paretnhèse entre chaque terme parfois inutile
+
+
 let c: Formula = "c"
+//formule ex9 2.1
+let f2 = !(a && (b || c))
+print("2.1 ex9")
+print("la forme nnf de \(f2) est \(f2.nnf)")
+print("cnf de f2 = \((!a || !b) && (!a || !c))")
+print("dnf de f2 = f2.nnf : \(f2.nnf)")
 
-let j = (a || b) |- (a && c) || (b && c) || !c
-print("Le jugement de ex 1.2 est ")
-print(j.isProvable)
+//formule ex9 2.2
+let f3 = (a => b) || !(a && c)
+print("2.2 ex9")
+print("la forme nnf de \(f3) est \(f3.nnf)")
+print("cnf = nnf de f3 = \(!a || b || !c)")
+print("dnf = cnf de f3 = \(!a || b || !c)")
+//dnf de f2 = f2.nnf
 
-let d: Formula = "d"
-let j1 = a => b && a => c && b => d && c => d |- a => d
-print("Le jugement de ex 1.3 est ")
-print(j1.isProvable)
+//formule ex9 2.3
+print("2.3 ex9")
+let f4 = ((!a || b && c) && a)
+print("la forme nnf de \(f4) est \(f4.nnf)")
+print("cnf de f4 = \(b && c && a)")
+print("dnf = cnf de f4 = \(b && c && a)")
 
-/*
 let booleanEvaluation = f.eval { (proposition) -> Bool in
     switch proposition {
         case "p": return true
@@ -58,4 +78,3 @@ let fruityEvaluation = f.eval { (proposition) -> Fruit in
     }
 }
 print(fruityEvaluation)
-*/
