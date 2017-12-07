@@ -3,9 +3,22 @@ import ProofKitLib
 let a: Formula = "a"
 let b: Formula = "b"
 let f = !(a && b)
-//version NNF de ça
 print(f)
-print(f.nnf)
+//version NNF de f
+print("la forme nnf de \(f) est \(f.nnf)")
+
+
+//proofkit revoit des paretnhèse entre chaque terme parfois inutile
+
+
+let c: Formula = "c"
+//formule ex9 2.1
+let f2 = !(a && (b || c))
+print("2.1 ex9")
+print("la forme nnf de \(f2) est \(f2.nnf)")
+print("cnf de f2 = \((!a || !b) && (!a || !c))")
+print("dnf de f2 = \(f2.dnf)")
+print("dnf de f2 = f2.nnf : \(f2.nnf)")
 
 
 
